@@ -21,6 +21,6 @@
         </style>
     </head>
     <body class="antialiased">
-       <h1>Minha API</h1>
+       <h1>Minha API {{now()}}</h1>
     </body>
 </html>
