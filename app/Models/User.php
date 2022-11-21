@@ -63,4 +63,10 @@ class User extends Authenticatable implements JWTSubject
     {
         return [];
     }
+
+    public function logout($token){
+        if (!JWTAuth::invalidate($token)) {
+          throw new \Exception('Erro. Tente novamente.', -404);
+        }
+      }
 }

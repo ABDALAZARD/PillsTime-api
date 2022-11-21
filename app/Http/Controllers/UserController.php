@@ -6,10 +6,8 @@ use App\Models\User;
 use App\Http\Requests\User\StoreUser;
 use App\Services\ResponseService;
 use App\Transformers\User\UserResource;
-use App\Transformers\User\UserResourceCollection;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Validator;
+
 
 class UserController extends Controller
 {
@@ -49,6 +47,18 @@ class UserController extends Controller
             return ResponseService::exception('users.login',null,$e);
         }
         return response()->json(compact('token'));
+    }
+
+    public function logout(Request $request) {
+        try {
+            $this
+            ->user
+            ->logout($request->input('token'));
+        } catch (\Throwable|\Exception $e) {
+            return ResponseService::exception('users.logout',null,$e);
+        }
+
+        return response(['status' => true,'msg' => 'Deslogado com sucesso'], 200);
     }
 
 }
