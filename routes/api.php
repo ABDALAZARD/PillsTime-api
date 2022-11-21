@@ -23,4 +23,4 @@ Route::post('login', [UserController::class, 'login'])->name('users.login');
 
 Route::group(['prefix' => 'v1', 'middleware' => 'jwt.verify'],function () {
     Route::post('logout', [UserController::class, 'logout'])->name('users.logout');
-  });
+});
