@@ -17,7 +17,9 @@
     "require-dev": {
         "facade/ignition": "^2.5",
         "fakerphp/faker": "^1.9.1",
+        "friendsofphp/php-cs-fixer": "^3.13",
         "laravel/sail": "^1.0.1",
+        "matt-allan/laravel-code-style": "^0.7.0",
         "mockery/mockery": "^1.4.4",
         "nunomaduro/collision": "^5.10",
         "phpunit/phpunit": "9.5"
@@ -35,12 +37,13 @@
         }
     },
     "scripts": {
+        "test": "phpunit",
+        "style-lint": "php-cs-fixer fix --dry-run --diff --ansi",
+        "style-fix": "php-cs-fixer fix --diff --ansi",
+        "ci-style-lint": "php-cs-fixer fix --dry-run",
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
             "@php artisan package:discover --ansi"
-        ],
-        "post-update-cmd": [
-            "@php artisan vendor:publish --tag=laravel-assets --ansi --force"
         ],
         "post-root-package-install": [
             "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
