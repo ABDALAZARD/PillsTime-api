@@ -14,12 +14,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-//Register
-Route::post('register', [UserController::class, 'store'])->name('users.store');
-//Login
-Route::post('login', [UserController::class, 'login'])->name('users.login');
-
+//Middleware
 Route::group(['prefix' => 'v1', 'middleware' => 'jwt.verify'],function () {
     //Logout
     Route::post('logout', [UserController::class, 'logout'])->name('users.logout');
 });
+
+//Register
+Route::post('register', [UserController::class, 'store'])->name('users.store');
+
+//Login
+Route::post('login', [UserController::class, 'login'])->name('users.login');
