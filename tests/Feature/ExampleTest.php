@@ -3,10 +3,13 @@
 namespace Tests\Feature;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Http\Response;
 use Tests\TestCase;
 
 class ExampleTest extends TestCase
 {
+    use RefreshDatabase;
+
     /**
      * A basic test example.
      *
@@ -14,8 +17,15 @@ class ExampleTest extends TestCase
      */
     public function test_example()
     {
-        $response = $this->get('/');
+        $data = [
+            'name' => 'Teste',
+            'email' => 'teste@teste.com',
+            'password' => '12345',
+        ];
 
-        $response->assertStatus(200);
+        $url = $this->postJson('/api/register', $data);
+
+        $response = $this->assertTrue(true);
+
     }
 }
