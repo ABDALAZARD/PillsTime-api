@@ -2,6 +2,8 @@
 
 namespace Tests\Feature\Users;
 
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 use Tests\TestCase;
 
 class UserTest extends TestCase
@@ -11,6 +13,7 @@ class UserTest extends TestCase
      *
      * @return void
      */
+
     public function test_example()
     {
         $response = $this->get('/');
@@ -18,9 +21,26 @@ class UserTest extends TestCase
         $response->assertStatus(200);
     }
 
-    public function register_test()
+    public function test_user_register()
     {
-        $rand = random_int(12, 12);
-        dd($rand);
+        $user = User::all();
+        if( $user->count() > 0 ) {
+            foreach($user as $usr) {
+                $usr->delete();
+            }
+        }
+        $data = [
+            'name' => "Vinicius Jr",
+            'email' => "vinijr@teste.com",
+            'password' => '123456',
+        ];
+
+        $url = 'users.store';
+
+        $response = $this->postJson($url, $data);
+
+        $response->assertOk();
+
+        // dd($user);
     }
 }
