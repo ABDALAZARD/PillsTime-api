@@ -37,5 +37,6 @@ class UserTest extends TestCase
             foreach($user as $usr) {
                 $usr->delete();
             }
-        }    }
+        }
+    }
 }
