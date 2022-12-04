@@ -32,10 +32,10 @@ class UserTest extends TestCase
 
         $response->assertStatus(200);
 
-        $user = User::all();
-        if($user->count() > 0) {
-            foreach($user as $usr) {
-                $usr->delete();
+        $users = User::all();
+        if($users->count() > 0) {
+            foreach($users as $user) {
+                $user->delete();
             }
         }
     }
