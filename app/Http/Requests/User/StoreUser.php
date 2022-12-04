@@ -27,7 +27,7 @@ class StoreUser extends FormRequest
         return [
             'email'     => 'unique:users,email|email|required',
             'name'      => 'required',
-            'password'  => 'required'
+            'password'  => 'required',
         ];
     }
 
@@ -45,7 +45,7 @@ class StoreUser extends FormRequest
                 'msg'   => 'Ops! Algum campo obrigatório não foi preenchido.',
                 'status' => false,
                 'errors'    => $validator->errors(),
-                'url'    => route('users.store')
+                'url'    => route('users.store'),
             ], 403));
        }
     }

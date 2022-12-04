@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 //Middleware
-Route::group(['prefix' => 'v1', 'middleware' => 'jwt.verify'],function () {
+Route::group(['prefix' => 'v1', 'middleware' => 'jwt.verify'], function () {
     //Logout
     Route::post('logout', [UserController::class, 'logout'])->name('users.logout');
 });
