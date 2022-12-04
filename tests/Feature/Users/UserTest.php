@@ -5,6 +5,7 @@ namespace Tests\Feature\Users;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Hash;
+// use Lcobucci\JWT\Token;
 use Tests\TestCase;
 
 class UserTest extends TestCase
@@ -32,11 +33,39 @@ class UserTest extends TestCase
 
         $response->assertStatus(200);
 
-        $users = User::all();
-        if($users->count() > 0) {
-            foreach($users as $user) {
-                $user->delete();
-            }
-        }
+        $this->cleanUp();
     }
+
+    public function test_login() {
+
+    //WIP
+
+        $this->cleanUp();
+        $rand = rand(1, 99999);
+        $user = new User([
+            'name' => 'Testerson',
+            'email' => 'testerson@teste.com',
+            'password' => Hash::make($rand),
+        ]);
+        $user->save();
+
+        $data = [
+            'email' => $user->email,
+            'password' => $rand,
+        ];
+
+        $url = '/api/login';
+
+        $response = $this->postJson($url, $data);
+
+        $response->assertOk();
+        // $response->assertJson([
+        //     'data' => [
+        //         ['id' => $user->id],
+        //     ],
+        // ]);
+        // $token = new Token();
+        // $a = new UserController($response->data);
+        // $a->logout($response->data);
+        }
 }
