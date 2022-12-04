@@ -26,14 +26,19 @@ class UserController extends Controller
 
     public function store(StoreUser $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|String|min:8|max:12',
+            'email' => 'required|email|unique:users',
+            'password' => 'required|password|min:5|max:15',
+        ]);
+
         try{
             $user = $this->user->create($request->all());
 
         }catch(\Throwable|\Exception $e){
             return ResponseService::exception('users.store',null,$e);
         }
-        return new UserResource($user,array('type' => 'store','route' => 'users.store'));
+        return new UserResource($user);
     }
 
     public function login(Request $request)
