@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
 use App\Http\Requests\User\StoreUser;
+use App\Models\User;
 use App\Services\ResponseService;
 use App\Transformers\User\UserResource;
 use Illuminate\Http\Request;
-
 
 class UserController extends Controller
 {
@@ -17,10 +16,9 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-
     private $user;
 
-    public function __construct(User $user){
+    public function __construct(User $user) {
         $this->user = $user;
     }
 
@@ -36,8 +34,9 @@ class UserController extends Controller
             $user = $this->user->create($request->all());
 
         }catch(\Throwable|\Exception $e){
-            return ResponseService::exception('users.store',null,$e);
+            return ResponseService::exception('users.store', null, $e);
         }
+
         return new UserResource($user);
     }
 
@@ -49,8 +48,9 @@ class UserController extends Controller
             ->user
             ->login($credentials);
         } catch (\Throwable|\Exception $e) {
-            return ResponseService::exception('users.login',null,$e);
+            return ResponseService::exception('users.login', null, $e);
         }
+
         return response()->json(compact('token'));
     }
 
@@ -60,10 +60,9 @@ class UserController extends Controller
             ->user
             ->logout($request->input('token'));
         } catch (\Throwable|\Exception $e) {
-            return ResponseService::exception('users.logout',null,$e);
+            return ResponseService::exception('users.logout', null, $e);
         }
 
-        return response(['status' => true,'msg' => 'Deslogado com sucesso'], 200);
+        return response(['status' => true, 'msg' => 'Deslogado com sucesso'], 200);
     }
-
 }

@@ -2,12 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Tymon\JWTAuth\Contracts\JWTSubject;
+use Illuminate\Support\Facades\Hash;
 use JWTAuth;
-use Tymon\JWTAuth\Exceptions\JWTException;
+use Tymon\JWTAuth\Contracts\JWTSubject;
 
 class User extends Authenticatable implements JWTSubject
 {
@@ -42,15 +40,16 @@ class User extends Authenticatable implements JWTSubject
     {
         return parent::create([
             'name' => $fields['name'],
-            'email' => $fields['email'] ,
+            'email' => $fields['email'],
             'password' => Hash::make($fields['password']),
         ]);
     }
 
-    public function login($credentials){
-        if (!$token = JWTAuth::attempt($credentials)) {
+    public function login($credentials) {
+        if (! $token = JWTAuth::attempt($credentials)) {
             throw new \Exception('Credencias incorretas, verifique-as e tente novamente.', -404);
         }
+
         return $token;
     }
 
@@ -64,8 +63,8 @@ class User extends Authenticatable implements JWTSubject
         return [];
     }
 
-    public function logout($token){
-        if (!JWTAuth::invalidate($token)) {
+    public function logout($token) {
+        if (! JWTAuth::invalidate($token)) {
           throw new \Exception('Erro. Tente novamente.', -404);
         }
       }

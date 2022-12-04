@@ -11,7 +11,7 @@ class UserResourceCollection extends ResourceCollection
    *
    * @param  mixed  $resource
    * @return void
-  */
+   */
   public function toArray($request)
   {
     return ['data' => $this->collection];
@@ -22,13 +22,13 @@ class UserResourceCollection extends ResourceCollection
    *
    * @param \Illuminate\Http\Request  $request
    * @return array
-  */
+   */
   public function with($request)
   {
     return [
-      'status' => true,
-      'msg'    => 'Listando dados',
-      'url'    => route('users.index')
+        'status' => true,
+        'msg'    => 'Listando dados',
+        'url'    => route('users.index'),
     ];
   }
 

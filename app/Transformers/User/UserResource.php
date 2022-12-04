@@ -2,8 +2,8 @@
 
 namespace App\Transformers\User;
 
-use Illuminate\Http\Resources\Json\JsonResource;
 use App\Services\ResponseService;
+use Illuminate\Http\Resources\Json\JsonResource;
 
 class UserResource extends JsonResource
 {
@@ -18,7 +18,7 @@ class UserResource extends JsonResource
      * @param  mixed  $resource
      * @return void
      */
-    public function __construct($resource, $config = array())
+    public function __construct($resource, $config = [])
     {
         // Ensure you call the parent constructor
         parent::__construct($resource);
@@ -39,7 +39,7 @@ class UserResource extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'email' => $this->email,
-            'password' => '*********'
+            'password' => '*********',
         ];
     }
 
@@ -51,7 +51,7 @@ class UserResource extends JsonResource
      */
     public function with($request)
     {
-        return ResponseService::default($this->config,$this->id);
+        return ResponseService::default($this->config, $this->id);
     }
 
     /**
