@@ -4,9 +4,20 @@ php:
   disabled:
     - no_unused_imports
   finder:
-    not-name:
-      - index.php
-      - server.php
+  exclude:
+    - "modules"
+    - "node_modules"
+    - "nova"
+    - "nova-components"
+    - "storage"
+    - "spark"
+    - "vendor"
+  name: "*.php"
+  not-name:
+    - "*.blade.php"
+    - "_ide_helper.php"
+    - index.php
+    - server.php
 js:
   finder:
     not-name:
