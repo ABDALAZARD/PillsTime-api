@@ -25,9 +25,9 @@ class UserController extends Controller
     public function store(StoreUser $request)
     {
         $request->validate([
-            'name' => 'required|String|min:8|max:12',
-            'email' => 'required|email|unique:users',
-            'password' => 'required',
+            'email'     => 'unique:users,email|email|required',
+            'name'      => 'required',
+            'password'  => 'required',
         ]);
 
         try{
@@ -37,7 +37,7 @@ class UserController extends Controller
             return ResponseService::exception('users.store', null, $e);
         }
 
-        return new UserResource($user);
+        return new UserResource($user, ['type' => 'store', 'route' => 'users.store']);
     }
 
     public function login(Request $request)

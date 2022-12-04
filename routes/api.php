@@ -21,7 +21,7 @@ Route::group(['prefix' => 'v1', 'middleware' => 'jwt.verify'], function () {
 });
 
 //Register
-Route::post('/register', [UserController::class, 'store'])->name('users.store');
+Route::post('register', [UserController::class, 'store'])->name('users.store');
 
 //Login
-Route::post('/login', [UserController::class, 'login'])->name('users.login');
+Route::post('login', [UserController::class, 'login'])->name('users.login');
