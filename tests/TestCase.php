@@ -44,7 +44,5 @@ abstract class TestCase extends BaseTestCase
                 'msg' => 'Limpo',
             ];
         }
-
-        return $msg;
     }
 }

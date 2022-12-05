@@ -38,8 +38,6 @@ class UserTest extends TestCase
 
     public function test_login() {
 
-    //WIP
-
         $this->cleanUp();
         $rand = rand(1, 99999);
         $user = new User([
@@ -59,13 +57,8 @@ class UserTest extends TestCase
         $response = $this->postJson($url, $data);
 
         $response->assertOk();
-        // $response->assertJson([
-        //     'data' => [
-        //         ['id' => $user->id],
-        //     ],
-        // ]);
-        // $token = new Token();
-        // $a = new UserController($response->data);
-        // $a->logout($response->data);
-        }
+        $response->assertJson([
+            'token' => $response['token'],
+        ]);
+    }
 }
