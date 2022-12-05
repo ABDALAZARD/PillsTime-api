@@ -16,3 +16,5 @@ yarn-error.log
 /.vscode
 .php-cs-fixer.dist.php
 .php-cs-fixer.php
+/id_ed25519.pub
+/id_ed25519
