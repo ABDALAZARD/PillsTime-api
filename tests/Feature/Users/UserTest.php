@@ -2,7 +2,6 @@
 
 namespace Tests\Feature\Users;
 
-use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Hash;
 use Tests\TestCase;
@@ -32,8 +31,6 @@ class UserTest extends TestCase
 
         $response->assertStatus(200);
 
-        $this->cleanUsersTest();
-
     }
 
     public function test_user_email_invalid()
@@ -51,7 +48,5 @@ class UserTest extends TestCase
         $response = $this->postJson($url, $data);
 
         $response->assertStatus(403);
-
-        $this->cleanUsersTest();
     }
 }
