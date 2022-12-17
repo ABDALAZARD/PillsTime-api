@@ -32,12 +32,8 @@ class UserTest extends TestCase
 
         $response->assertStatus(200);
 
-        $users = User::all();
-        if($users->count() > 0) {
-            foreach($users as $user) {
-                $user->delete();
-            }
-        }
+        $this->cleanUsersTest();
+
     }
 
     public function test_user_email_invalid()
@@ -56,11 +52,6 @@ class UserTest extends TestCase
 
         $response->assertStatus(403);
 
-        $users = User::all();
-        if($users->count() > 0) {
-            foreach($users as $user) {
-                $user->delete();
-            }
-        }
+        $this->cleanUsersTest();
     }
 }
