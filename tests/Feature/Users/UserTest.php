@@ -39,4 +39,28 @@ class UserTest extends TestCase
             }
         }
     }
+
+    public function test_user_email_invalid()
+    {
+
+        $rand = rand(1, 99999);
+        $data = [
+            'name' => "Vinicius Jr nº $rand",
+            'email' => "vinijr$rand",
+            'password' => Hash::make($rand),
+
+        ];
+        $url = '/api/register';
+
+        $response = $this->postJson($url, $data);
+
+        $response->assertStatus(403);
+
+        $users = User::all();
+        if($users->count() > 0) {
+            foreach($users as $user) {
+                $user->delete();
+            }
+        }
+    }
 }
