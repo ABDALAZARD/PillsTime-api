@@ -6,7 +6,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Hash;
 use Tests\TestCase;
 
-class UserTest extends TestCase
+class RegisterUserTest extends TestCase
 {
     /**
      * A basic feature test example.
@@ -29,7 +29,7 @@ class UserTest extends TestCase
 
         $response = $this->postJson($url, $data);
 
-        $response->assertStatus(200);
+        $response->assertOk();
 
     }
 
@@ -47,6 +47,22 @@ class UserTest extends TestCase
 
         $response = $this->postJson($url, $data);
 
-        $response->assertStatus(403);
+        $response->assertForbidden();
+    }
+
+    public function test_password()
+    {
+        $rand = rand(1, 99999);
+        $data = [
+            'name' => "Vinicius Jr nº $rand",
+            'email' => "vinijr$rand@gmail.com",
+            'password' => '',
+
+        ];
+        $url = '/api/register';
+
+        $response = $this->postJson($url, $data);
+
+        $response->assertForbidden();
     }
 }

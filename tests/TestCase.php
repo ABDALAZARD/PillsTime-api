@@ -16,6 +16,6 @@ abstract class TestCase extends BaseTestCase
                 $user->delete();
             }
         }
-
+        return;
     }
 }
