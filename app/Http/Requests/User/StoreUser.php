@@ -45,7 +45,7 @@ class StoreUser extends FormRequest
                 'msg'   => 'Ops! Algum campo obrigatório não foi preenchido.',
                 'status' => false,
                 'errors'    => $validator->errors(),
-                'url'    => route('users.store'),
+                'url'    => route('register'),
             ], 403));
        }
     }
