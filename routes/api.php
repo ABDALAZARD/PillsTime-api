@@ -17,11 +17,11 @@ use Illuminate\Support\Facades\Route;
 //Middleware
 Route::group(['prefix' => 'v1', 'middleware' => 'jwt.verify'], function () {
     //Logout
-    Route::post('logout', [UserController::class, 'logout'])->name('users.logout');
+    Route::post('/logout', [UserController::class, 'logout'])->name('logout');
 });
 
 //Register
-Route::post('register', [UserController::class, 'store'])->name('users.store');
+Route::post('/register', [UserController::class, 'register'])->name('register');
 
 //Login
-Route::post('login', [UserController::class, 'login'])->name('users.login');
+Route::post('/login', [UserController::class, 'login'])->name('login');
