@@ -7,7 +7,6 @@ use App\Models\User;
 use App\Services\ResponseService;
 use App\Transformers\User\UserResource;
 use Illuminate\Http\Request;
-use Illuminate\Routing\RouteParameterBinder;
 
 class UserController extends Controller
 {
