@@ -26,7 +26,7 @@ class UserController extends Controller
     {
         $request->validate([
             'email'     => 'unique:users,email|email|required',
-            'name'      => 'required|min:3|max:50',
+            'name'      => 'required|min:3|max:250',
             'password'  => 'required|min:5|max:250',
         ]);
 
@@ -37,16 +37,18 @@ class UserController extends Controller
             return ResponseService::exception('register', null, $e);
         }
 
-        return new UserResource($user,['type' => 'store', 'route' => 'register']);
+        return new UserResource($user,['type' => 'store', 'route' => 're0gister']);
     }
 
     public function login(Request $request)
     {
-        $credentials = $request->only('email', 'password');
+        $request->validate([
+            'email'     => 'email|required',
+            'password'  => 'required|min:5',
+        ]);
+        
         try {
-            $token = $this
-            ->user
-            ->login($credentials);
+            $token = $this->user->login($request->only('email', 'password'));
         } catch (\Throwable|\Exception $e) {
             return ResponseService::exception('login', null, $e);
         }
