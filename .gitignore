@@ -16,3 +16,4 @@ yarn-error.log
 /.vscode
 .php-cs-fixer.dist.php
 .php-cs-fixer.php
+Token_github
