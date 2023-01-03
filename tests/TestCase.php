@@ -6,7 +6,6 @@ use App\Models\User;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 use Illuminate\Support\Facades\Hash;
 
-
 abstract class TestCase extends BaseTestCase
 {
     use CreatesApplication;
@@ -29,7 +28,7 @@ abstract class TestCase extends BaseTestCase
     //     $newUser->email = "vinijr$rand@teste.com";
     //     $newUser->password = Hash::make('12345');
     //     $newUser->save();
-        
+
     //     return $newUser;
     // }
 }

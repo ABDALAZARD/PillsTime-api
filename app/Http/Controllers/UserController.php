@@ -37,7 +37,7 @@ class UserController extends Controller
             return ResponseService::exception('register', null, $e);
         }
 
-        return new UserResource($user,['type' => 'store', 'route' => 'register']);
+        return new UserResource($user, ['type' => 'store', 'route' => 'register']);
     }
 
     public function login(Request $request)
@@ -46,7 +46,7 @@ class UserController extends Controller
             'email'     => 'email|required',
             'password'  => 'required|min:5',
         ]);
-        
+
         try {
             $token = $this->user->login($request->only('email', 'password'));
         } catch (\Throwable|\Exception $e) {
