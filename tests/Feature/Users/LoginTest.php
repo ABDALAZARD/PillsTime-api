@@ -58,12 +58,12 @@ class LoginTest extends TestCase
         $newUser = new User();
         $newUser->name = "Vinicius Jr";
         $newUser->email = "vinijr@teste.com";
-        $newUser->password = Hash::make('123456');
+        $newUser->password = Hash::make('12345');
         $newUser->save();
 
         $data = [
             'email' => 'vinijr@teste.com',
-            'password' => '123456',
+            'password' => '123456'
         ];
 
         $response = $this->postJson('/api/login', $data);

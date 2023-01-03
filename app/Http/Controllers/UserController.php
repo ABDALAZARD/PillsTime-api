@@ -37,7 +37,7 @@ class UserController extends Controller
             return ResponseService::exception('register', null, $e);
         }
 
-        return new UserResource($user,['type' => 'store', 'route' => 're0gister']);
+        return new UserResource($user,['type' => 'store', 'route' => 'register']);
     }
 
     public function login(Request $request)
